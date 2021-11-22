@@ -1,10 +1,10 @@
 import React from "react";
-import { TextInput } from "react-native";
+import { TextInput, StyleSheet } from "react-native";
 
 const Inputs = (props) => {
   return (
     <TextInput
-      style={props.inputStyles}
+      style={styles.input}
       placeholder={props.placeholder}
       onChangeText={props.onChangeText}
       value={props.value}
@@ -15,3 +15,15 @@ const Inputs = (props) => {
 };
 
 export default Inputs;
+
+const styles = StyleSheet.create({
+  input: {
+    flex: 1,
+    textAlign: "center",
+    backgroundColor: "white",
+    borderRadius: 10,
+    padding: 8,
+    marginHorizontal: 5,
+    marginVertical: 15,
+  },
+});

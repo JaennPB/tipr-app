@@ -3,7 +3,7 @@ import { StyleSheet, StatusBar, SafeAreaView } from "react-native";
 import { Provider } from "react-redux";
 
 import Card from "./components/UI/Card";
-import Title from "./containers/TitleSection";
+import TitleSection from "./containers/TitleSection";
 import InputSection from "./containers/InputSection";
 import OutputSection from "./containers/OutputSection";
 
@@ -18,7 +18,7 @@ const App = () => {
       <SafeAreaView style={styles.container}>
         <Provider store={store}>
           <Card title>
-            <Title />
+            <TitleSection />
           </Card>
           <Card>
             <InputSection />

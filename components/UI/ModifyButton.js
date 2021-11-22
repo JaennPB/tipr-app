@@ -1,48 +1,32 @@
 import React from "react";
-import { Text, Pressable, StyleSheet } from "react-native";
-
-import theme from "../theme/theme";
-
-// =====================================================================
-// =========================================================== component
+import { Text, StyleSheet, TouchableOpacity } from "react-native";
 
 const ModifyButtons = (props) => {
-  const buttonStyles = (pressed) => {
-    let updatedButtonStyles = [styles.button];
+  const updatedStyles = () => {
+    const updatedStyles = [styles.button];
 
-    if (pressed) {
-      updatedButtonStyles.push({ backgroundColor: theme.colors.inputLight });
-    }
+    props.disabled && updatedStyles.push({ opacity: 0.7 });
 
-    if (props.disabled) {
-      updatedButtonStyles.push({ opacity: 0.5 });
-    }
-
-    return updatedButtonStyles;
+    return updatedStyles;
   };
 
   return (
-    <Pressable
-      style={({ pressed }) => buttonStyles(pressed)}
+    <TouchableOpacity
+      style={updatedStyles()}
       onPress={props.pressed}
       disabled={props.disabled}
     >
-      <Text>{props.buttonType}</Text>
-    </Pressable>
+      <Text style={{ fontSize: 18 }}>{props.buttonType}</Text>
+    </TouchableOpacity>
   );
 };
 
-// ==================================================================
-// =========================================================== styles
-
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: theme.colors.inputDark,
-    borderRadius: theme.margins.borderRadius,
-    paddingHorizontal: 20,
+    backgroundColor: "white",
+    borderRadius: 10,
+    paddingHorizontal: 18,
     paddingVertical: 10,
-    marginBottom: 10,
-    justifyContent: "center",
   },
 });
 

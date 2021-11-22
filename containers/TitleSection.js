@@ -1,23 +1,20 @@
 import React from "react";
 import { Image, View, StyleSheet } from "react-native";
 
-const Title = () => {
+const TitleSection = () => {
   return (
-    <View style={styles.container}>
+    <View>
       <Image source={require("../assets/logo.png")} style={styles.img} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-  },
   img: {
-    height: 55,
+    height: 60,
+    width: "50%",
+    resizeMode: "contain",
   },
 });
 
-export default Title;
+export default TitleSection;

@@ -4,9 +4,6 @@ import { useSelector } from "react-redux";
 
 import theme from "../theme/theme";
 
-// =====================================================================
-// =========================================================== component
-
 const OutputSection = (props) => {
   const tip = useSelector((state) => state.tip);
   const tipPerPerson = useSelector((state) => state.tipPerPerson);
@@ -16,11 +13,11 @@ const OutputSection = (props) => {
 
   return (
     <>
-      <View style={styles.outputContainer}>
+      <View style={defaultOutput.box}>
         <Text style={styles.results}>Tip ({tipPercent}%)</Text>
         <Text style={styles.results}>${tip.toFixed(2)}</Text>
       </View>
-      <View style={styles.outputContainer}>
+      <View style={defaultOutput.box}>
         <Text style={styles.results}>Tip per person ({dividedBy})</Text>
         <Text style={styles.results}>${tipPerPerson.toFixed(2)}</Text>
       </View>
@@ -32,16 +29,10 @@ const OutputSection = (props) => {
   );
 };
 
-// ==================================================================
-// =========================================================== styles
-
-const defaultOutputStyles = StyleSheet.create({
-  results: {
-    fontSize: 20,
-  },
-  outputContainer: {
-    backgroundColor: theme.colors.inputLight,
-    borderRadius: theme.margins.borderRadius,
+const defaultOutput = StyleSheet.create({
+  box: {
+    backgroundColor: "white",
+    borderRadius: 10,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
@@ -52,21 +43,17 @@ const defaultOutputStyles = StyleSheet.create({
 });
 
 const styles = StyleSheet.create({
-  outputContainer: {
-    ...defaultOutputStyles.outputContainer,
+  results: {
+    fontSize: 20,
   },
   outputContainerTotal: {
-    ...defaultOutputStyles.outputContainer,
-    backgroundColor: theme.colors.primary,
+    ...defaultOutput.box,
+    backgroundColor: theme.secondary,
     marginBottom: 0,
   },
-  results: {
-    ...defaultOutputStyles.results,
-    color: theme.colors.tertiary,
-  },
   resultsTotal: {
-    ...defaultOutputStyles.results,
-    color: theme.colors.font,
+    fontSize: 20,
+    color: "white",
   },
 });
 

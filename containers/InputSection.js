@@ -2,13 +2,10 @@ import React from "react";
 import { View, StyleSheet, Alert, Keyboard } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
-import Button from "../components/Button";
+import Button from "../components/UI/Button";
 import Data from "../components/Data";
 
-import { calculateBill, clearInputs } from "../store/reducer";
-
-// =====================================================================
-// =========================================================== component
+import { calculateBill, clearInputs } from "../store/mainSlice";
 
 const InputSection = (props) => {
   const dispatch = useDispatch();
@@ -24,36 +21,32 @@ const InputSection = (props) => {
       Keyboard.dismiss();
       dispatch(calculateBill());
     } else {
-      Alert.alert("Error", "Please add valid values 😉");
+      Alert.alert("Error", "Please fill all values 😉");
     }
   };
 
   return (
     <>
-      <View>
-        <Data />
-      </View>
+      <Data />
       <View style={styles.buttonSection}>
-        <Button title="Clear" pressed={clearHandler} secondary />
+        <Button title="Clear" onPress={clearHandler} />
         <Button
-          title="Calculate"
-          pressed={calcHandler}
+          title="Get tip"
+          onPress={calcHandler}
           disabled={!billValue || !tipPercent}
+          get
         />
       </View>
     </>
   );
 };
 
-// ==================================================================
-// =========================================================== styles
-
 const styles = StyleSheet.create({
   buttonSection: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-evenly",
-    marginTop: 20,
+    marginTop: 15,
   },
 });
 

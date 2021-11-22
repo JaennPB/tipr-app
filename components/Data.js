@@ -1,10 +1,9 @@
 import React from "react";
-import { Text, TextInput, View, StyleSheet, Alert } from "react-native";
+import { Text, View, StyleSheet, TextInput } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
-import theme from "../theme/theme";
-import ModifyButtons from "./ModifyButton";
-import Inputs from "./Inputs";
+import ModifyButtons from "./UI/ModifyButton";
+import Inputs from "./UI/Inputs";
 
 import {
   setBillData,
@@ -12,10 +11,7 @@ import {
   setDividedByData,
   increaseValue,
   decreaseValue,
-} from "../store/reducer";
-
-// =====================================================================
-// =========================================================== component
+} from "../store/mainSlice";
 
 const Input = (props) => {
   const dispatch = useDispatch();
@@ -45,26 +41,27 @@ const Input = (props) => {
   };
 
   return (
-    <>
+    <View>
       <View>
         <Text style={styles.label}>Bill $</Text>
-        <Inputs
-          inputStyles={styles.billInput}
+        <TextInput
+          style={styles.billInput}
           placeholder="Your total bill"
           onChangeText={(bill) => sendBillData(bill)}
           value={billValue ? billValue.toString() : null}
+          keyboardType="decimal-pad"
+          returnKeyType="done"
         />
       </View>
       <View>
         <Text style={styles.label}>Tip Percent %</Text>
-        <View style={styles.InputContainer}>
+        <View style={styles.inputContainer}>
           <ModifyButtons
             pressed={() => sendDecreaseValue("tip")}
             disabled={tipValue === 1}
             buttonType="-"
           />
           <Inputs
-            inputStyles={styles.input}
             placeholder="Your tip in %"
             onChangeText={(tip) => sendTipData(tip)}
             value={tipValue ? tipValue.toString() : null}
@@ -77,14 +74,13 @@ const Input = (props) => {
       </View>
       <View>
         <Text style={styles.label}>Divide by</Text>
-        <View style={styles.InputContainer}>
+        <View style={styles.inputContainer}>
           <ModifyButtons
             pressed={() => sendDecreaseValue("people")}
             disabled={dividedByValue === 1}
             buttonType="-"
           />
           <Inputs
-            inputStyles={styles.input}
             onChangeText={(divided) => sendDividedByData(divided)}
             value={dividedByValue ? dividedByValue.toString() : null}
           />
@@ -94,45 +90,26 @@ const Input = (props) => {
           />
         </View>
       </View>
-    </>
+    </View>
   );
 };
 
-// ==================================================================
-// =========================================================== styles
-
-const defaultInputStyles = StyleSheet.create({
-  input: {
-    backgroundColor: theme.colors.inputLight,
-    color: theme.colors.tertiary,
-    borderRadius: theme.margins.borderRadius,
-    textAlign: "center",
-    flex: 3,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    marginHorizontal: 10,
-    marginBottom: 10,
-    fontSize: 16,
-  },
-});
-
 const styles = StyleSheet.create({
-  input: {
-    ...defaultInputStyles.input,
-  },
-  billInput: {
-    ...defaultInputStyles.input,
-    flex: null,
-    marginHorizontal: 0,
-  },
-  InputContainer: {
+  inputContainer: {
     display: "flex",
     flexDirection: "row",
+    alignItems: "center",
   },
   label: {
-    color: theme.colors.font,
+    color: "white",
     fontSize: 20,
-    marginBottom: 10,
+  },
+  billInput: {
+    backgroundColor: "white",
+    paddingVertical: 8,
+    paddingHorizontal: 15,
+    borderRadius: 10,
+    marginVertical: 15,
   },
 });
 

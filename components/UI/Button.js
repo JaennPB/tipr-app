@@ -1,54 +1,38 @@
 import React from "react";
-import { Text, StyleSheet, Pressable } from "react-native";
+import { Text, StyleSheet, TouchableOpacity } from "react-native";
 
 import theme from "../../theme/theme";
 
 const Button = (props) => {
-  const buttonStyles = (pressed) => {
-    let updatedButtonStyles = [styles.button];
+  const updatedStyles = () => {
+    const updatedStyles = [styles.button];
 
-    if (pressed && !props.secondary) {
-      updatedButtonStyles.push({
-        backgroundColor: theme.colors.primaryPressed,
-      });
-    } else if (!props.secondary) {
-      updatedButtonStyles.push({ backgroundColor: theme.colors.primary });
-    }
+    props.get && updatedStyles.push({ backgroundColor: theme.secondary });
+    props.disabled && updatedStyles.push({ opacity: 0.5 });
 
-    if (pressed && props.secondary) {
-      updatedButtonStyles.push({
-        backgroundColor: theme.colors.secondaryPressed,
-      });
-    } else if (props.secondary) {
-      updatedButtonStyles.push({ backgroundColor: theme.colors.secondary });
-    }
-
-    if (props.disabled) {
-      updatedButtonStyles.push({ opacity: 0.5 });
-    }
-
-    return updatedButtonStyles;
+    return updatedStyles;
   };
 
   return (
-    <Pressable
-      onPress={props.pressed}
-      style={({ pressed }) => buttonStyles(pressed)}
+    <TouchableOpacity
+      onPress={props.onPress}
+      style={updatedStyles()}
       disabled={props.disabled}
     >
       <Text style={styles.text}>{props.title}</Text>
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
-    borderRadius: theme.margins.borderRadius,
+    borderRadius: 10,
     paddingHorizontal: 20,
     paddingVertical: 10,
+    backgroundColor: "grey",
   },
   text: {
-    color: theme.colors.font,
+    color: "white",
     fontSize: 20,
   },
 });
