@@ -25,5 +25,6 @@ const styles = StyleSheet.create({
     padding: 8,
     marginHorizontal: 5,
     marginVertical: 15,
+    fontFamily: "customRegular",
   },
 });

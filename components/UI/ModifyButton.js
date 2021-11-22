@@ -16,7 +16,9 @@ const ModifyButtons = (props) => {
       onPress={props.pressed}
       disabled={props.disabled}
     >
-      <Text style={{ fontSize: 18 }}>{props.buttonType}</Text>
+      <Text style={{ fontSize: 18, fontFamily: "customRegular" }}>
+        {props.buttonType}
+      </Text>
     </TouchableOpacity>
   );
 };

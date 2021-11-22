@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
   label: {
     color: "white",
     fontSize: 20,
+    fontFamily: "customRegular",
   },
   billInput: {
     backgroundColor: "white",
@@ -110,6 +111,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     borderRadius: 10,
     marginVertical: 15,
+    fontFamily: "customRegular",
   },
 });
 

@@ -45,6 +45,7 @@ const defaultOutput = StyleSheet.create({
 const styles = StyleSheet.create({
   results: {
     fontSize: 20,
+    fontFamily: "customRegular",
   },
   outputContainerTotal: {
     ...defaultOutput.box,
@@ -54,6 +55,7 @@ const styles = StyleSheet.create({
   resultsTotal: {
     fontSize: 20,
     color: "white",
+    fontFamily: "customRegular",
   },
 });
 
