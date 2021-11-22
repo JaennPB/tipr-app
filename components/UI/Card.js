@@ -12,6 +12,7 @@ const Card = (props) => {
         paddingHorizontal: 0,
         paddingVertical: 0,
         backgroundColor: theme.primary,
+        marginBottom: 10,
       });
     }
 
